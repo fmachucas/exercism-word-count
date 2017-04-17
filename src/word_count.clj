@@ -1,5 +1,8 @@
-(ns word-count)
+(ns word-count
+  (:require [clojure.string :refer [split, lower-case]]))
 
-(defn word-count [] ;; <- arglist goes here
-  ;; your code goes here
-)
+(defn sanitize [string]
+  (re-seq #"[\w\d]+" (lower-case string)))
+
+(defn word-count [input]
+  (frequencies (sanitize input)))
